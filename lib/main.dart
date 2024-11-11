@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:tapthetarget_wildwest/start_game.dart';
-
-import 'mobile_screen.dart';
 import 'web_screen.dart';
 
 void main() {
@@ -53,20 +51,17 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // Check if data is fetched before showing a screen
-    if (!isDataFetched) {
-      return const MaterialApp(
-        home: Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        ),
-      );
-    }
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: isOpen && url.isNotEmpty
-          ? WebViewScreen(backgroundColor: Colors.white, url: url)
-          : const StartGame(),
+      home: isDataFetched
+          ? (false
+          ? WebViewScreen(backgroundColor: Colors.black, url: url)
+          : const StartGame())
+          : const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      ),
     );
   }
 }
