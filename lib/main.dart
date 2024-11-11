@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: isDataFetched
-          ? (false
+          ? (isOpen
           ? WebViewScreen(backgroundColor: Colors.black, url: url)
           : const StartGame())
           : const Scaffold(
